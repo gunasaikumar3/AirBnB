@@ -37,22 +37,51 @@ export default function Show() {
   };
 
   return (
-    <div>
-      <h3>Listing Details :</h3>
-      <ul>
-        <li>{listing.title}</li>
-        <li>{listing.description}</li>
-        <li>&#x20B9;{listing.price?.toLocaleString("en-IN")}</li>
-        <li>{listing.location}</li>
-        <li>{listing.country}</li>
-      </ul>
-      <br />
-      <Link to={`/listings/${listing._id}/edit`}>Edit this Listing</Link>
-      <br />
-      <br />
-      <form onSubmit={handleDelete}>
-        <button>Delete this Listing</button>
-      </form>
+    <div className="container mx-auto p-4 md:p-8">
+      {/* Image Section */}
+      <div className="w-full h-[400px] md:h-[500px] overflow-hidden rounded-xl shadow-lg mb-6">
+        <img
+          src={listing.image?.url}
+          alt={listing.title}
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Title and Details */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">{listing.title}</h1>
+        <p className="text-gray-600 mb-4">
+          {listing.location}, {listing.country}
+        </p>
+        <p className="text-xl font-semibold">
+          &#x20B9;{listing.price?.toLocaleString("en-IN")} / night
+        </p>
+      </div>
+
+      <hr className="my-6" />
+
+      {/* Description Section */}
+      <div className="mb-8">
+        <h2 className="text-2xl font-semibold mb-2">About this place</h2>
+        <p className="text-gray-700">{listing.description}</p>
+      </div>
+
+      <hr className="my-6" />
+
+      {/* Action Buttons */}
+      <div className="flex flex-col md:flex-row gap-4">
+        <Link
+          to={`/listings/${listing._id}/edit`}
+          className="bg-gray-100 text-gray-800 font-semibold py-2 px-6 rounded-md hover:bg-gray-200 transition-colors duration-200 text-center"
+        >
+          Edit this Listing
+        </Link>
+        <form onSubmit={handleDelete}>
+          <button className="bg-red-500 text-white font-semibold py-2 px-6 rounded-md hover:bg-red-600 transition-colors duration-200 w-full">
+            Delete this Listing
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
