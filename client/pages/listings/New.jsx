@@ -37,57 +37,61 @@ export default function New() {
   };
 
   return (
-    <div>
-      <h3>Create a New Listing</h3>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="title"
-          placeholder="enter title"
-          type="text"
-          onChange={handleChange}
-        />
-        <br />
-        <br />
-        <textarea
-          name="description"
-          placeholder="enter description"
-          onChange={handleChange}
-        ></textarea>
-        <br />
-        <br />
-        <input
-          name="image"
-          placeholder="enter image URL/Link"
-          type="text"
-          onChange={handleChange}
-        />
-        <br />
-        <br />
-        <input
-          name="price"
-          placeholder="enter price"
-          type="number"
-          onChange={handleChange}
-        />
-        <br />
-        <br />
-        <input
-          name="location"
-          placeholder="enter location"
-          type="text"
-          onChange={handleChange}
-        />
-        <br />
-        <br />
-        <input
-          name="country"
-          placeholder="enter country"
-          type="text"
-          onChange={handleChange}
-        />
-
-        <button>Add</button>
-      </form>
+    <div className="bg-gray-100 min-h-screen py-10 px-4 font-sans">
+      <div className="max-w-xl mx-auto p-8 bg-white rounded-xl shadow-lg">
+        <h3 className="text-center text-3xl font-bold text-gray-800 mb-8">
+          Create a New Listing
+        </h3>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <input
+            name="title"
+            placeholder="Enter title"
+            type="text"
+            onChange={handleChange}
+            className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200"
+          />
+          <textarea
+            name="description"
+            placeholder="Enter description"
+            onChange={handleChange}
+            className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200 min-h-[120px]"
+          ></textarea>
+          <input
+            name="image"
+            placeholder="Enter image URL/Link"
+            type="text"
+            onChange={handleChange}
+            className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200"
+          />
+          <input
+            name="price"
+            placeholder="Enter price"
+            type="number"
+            onChange={handleChange}
+            className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200"
+          />
+          <input
+            name="location"
+            placeholder="Enter location"
+            type="text"
+            onChange={handleChange}
+            className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200"
+          />
+          <input
+            name="country"
+            placeholder="Enter country"
+            type="text"
+            onChange={handleChange}
+            className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200"
+          />
+          <button
+            type="submit"
+            className="w-full py-4 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition duration-200 ease-in-out"
+          >
+            Add
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
