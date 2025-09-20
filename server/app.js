@@ -5,7 +5,7 @@ const cors = require("cors");
 const methodOverride = require("method-override");
 
 const mongoose = require("mongoose");
-const Listing = require("./models/listings.js");
+const Listing = require("./models/listing.js");
 
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
