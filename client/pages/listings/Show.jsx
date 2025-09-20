@@ -38,6 +38,11 @@ export default function Show() {
 
   return (
     <div className="container mx-auto p-4 md:p-8">
+      {/* Title */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">{listing.title}</h1>
+      </div>
+
       {/* Image Section */}
       <div className="w-full h-[400px] md:h-[500px] overflow-hidden rounded-xl shadow-lg mb-6">
         <img
@@ -47,9 +52,7 @@ export default function Show() {
         />
       </div>
 
-      {/* Title and Details */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">{listing.title}</h1>
         <p className="text-gray-600 mb-4">
           {listing.location}, {listing.country}
         </p>
