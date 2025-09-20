@@ -48,12 +48,14 @@ export default function New() {
             placeholder="Enter title"
             type="text"
             onChange={handleChange}
+            required
             className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200"
           />
           <textarea
             name="description"
             placeholder="Enter description"
             onChange={handleChange}
+            required
             className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200 min-h-[120px]"
           ></textarea>
           <input
@@ -67,6 +69,7 @@ export default function New() {
             name="price"
             placeholder="Enter price"
             type="number"
+            required
             onChange={handleChange}
             className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200"
           />
@@ -74,6 +77,7 @@ export default function New() {
             name="location"
             placeholder="Enter location"
             type="text"
+            required
             onChange={handleChange}
             className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200"
           />
@@ -81,6 +85,7 @@ export default function New() {
             name="country"
             placeholder="Enter country"
             type="text"
+            required
             onChange={handleChange}
             className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200"
           />
