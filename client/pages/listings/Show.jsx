@@ -1,9 +1,10 @@
+// Show.jsx
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import Reviews from "./Review";
 
 export default function Show() {
   const { id } = useParams();
-
   const navigate = useNavigate();
 
   const BACKEND_URL = import.meta.env.VITE_API_URL;
@@ -21,7 +22,7 @@ export default function Show() {
     };
 
     fetchListing();
-  }, []);
+  }, [id]);
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -29,62 +30,116 @@ export default function Show() {
       method: "DELETE",
     });
 
-    console.log(res);
-
     if (res.ok) {
       navigate("/listings");
     }
   };
 
   return (
-    <div className="container mx-auto p-4 md:p-8">
+    <div className="container mx-auto p-4 md:p-8 max-w-7xl">
       {/* Title */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">{listing.title}</h1>
-      </div>
-
-      {/* Image Section */}
-      <div className="w-full h-[400px] md:h-[500px] overflow-hidden rounded-xl shadow-lg mb-6">
-        <img
-          src={listing.image?.url}
-          alt={listing.title}
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      <div className="mb-8">
-        <p className="text-gray-600 mb-4">
+      <div className="mb-4">
+        <h1 className="text-3xl md:text-4xl font-semibold mb-1">
+          {listing.title}
+        </h1>
+        <p className="text-gray-600 text-lg">
           {listing.location}, {listing.country}
         </p>
-        <p className="text-xl font-semibold">
-          &#x20B9;{listing.price?.toLocaleString("en-IN")} / night
-        </p>
       </div>
 
-      <hr className="my-6" />
+      {/* Image Gallery Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 rounded-xl overflow-hidden mb-8">
+        {/* Main Large Image (takes 2 columns and 2 rows on larger screens) */}
+        <div className="md:col-span-2 md:row-span-2 h-[300px] md:h-[450px] lg:h-[500px]">
+          <img
+            src={listing.image?.url}
+            alt={listing.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-      {/* Description Section */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-2">About this place</h2>
-        <p className="text-gray-700">{listing.description}</p>
+        {/* Smaller Images (fill the remaining grid space) */}
+        <div className="hidden md:block h-[150px] lg:h-[250px]">
+          <img
+            src={listing.image?.url} // Using the same image for demonstration
+            alt={`${listing.title} - 1`}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="hidden md:block h-[150px] lg:h-[250px]">
+          <img
+            src={listing.image?.url} // Using the same image for demonstration
+            alt={`${listing.title} - 2`}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="hidden md:block h-[150px] lg:h-[250px]">
+          <img
+            src={listing.image?.url} // Using the same image for demonstration
+            alt={`${listing.title} - 3`}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="hidden md:block h-[150px] lg:h-[250px]">
+          <img
+            src={listing.image?.url} // Using the same image for demonstration
+            alt={`${listing.title} - 4`}
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
 
-      <hr className="my-6" />
+      <div className="flex flex-col lg:flex-row gap-10">
+        {/* Main Content */}
+        <div className="lg:w-2/3">
+          {/* Host Info and Description */}
+          <div className="border-b pb-6 mb-6">
+            <h2 className="text-xl md:text-2xl font-semibold mb-2">
+              Hosted by{" "}
+              <span className="font-bold">{listing.owner?.username}</span>
+            </h2>
+            <p className="text-gray-700">{listing.description}</p>
+          </div>
 
-      {/* Action Buttons */}
-      <div className="flex flex-col md:flex-row gap-4">
-        <Link
-          to={`/listings/${listing._id}/edit`}
-          className="bg-gray-100 text-gray-800 font-semibold py-2 px-6 rounded-md hover:bg-gray-200 transition-colors duration-200 text-center"
-        >
-          Edit this Listing
-        </Link>
-        <form onSubmit={handleDelete}>
-          <button className="bg-red-500 text-white font-semibold py-2 px-6 rounded-md hover:bg-red-600 transition-colors duration-200 w-full">
-            Delete this Listing
-          </button>
-        </form>
+          {/* Action Buttons - Placed below description */}
+          <div className="flex flex-col md:flex-row gap-4 mb-6">
+            <Link
+              to={`/listings/${listing._id}/edit`}
+              className="bg-gray-100 text-gray-800 font-semibold py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors duration-200 text-center flex-grow"
+            >
+              Edit this Listing
+            </Link>
+            <form onSubmit={handleDelete} className="flex-grow">
+              <button
+                type="submit"
+                className="bg-red-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-red-600 transition-colors duration-200 w-full"
+              >
+                Delete this Listing
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Booking and Price Card */}
+        <div className="lg:w-1/3">
+          <div className="border rounded-xl p-6 shadow-lg sticky top-8">
+            <div className="flex justify-between items-center mb-4">
+              <p className="text-2xl font-semibold">
+                &#x20B9;{listing.price?.toLocaleString("en-IN")}
+                <span className="text-lg font-normal"> / night</span>
+              </p>
+            </div>
+
+            {/* Placeholder for a future booking form */}
+            <div className="bg-gray-50 p-4 rounded-lg text-center text-gray-500 italic">
+              (Booking form would go here)
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Reviews Section */}
+      <Reviews />
     </div>
   );
 }
