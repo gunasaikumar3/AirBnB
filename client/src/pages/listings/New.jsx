@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createNewListing } from "../../api/listingApi";
 
 export default function New() {
-  const BACKEND_URL = import.meta.env.VITE_API_URL;
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -21,14 +20,7 @@ export default function New() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${BACKEND_URL}/listings`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ listing: formData }),
-    });
-
+    const res = await createNewListing(formData);
     console.log(res);
 
     if (res.ok) {

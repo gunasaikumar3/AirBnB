@@ -2,23 +2,18 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Reviews from "./Review";
+import { fetchSingleListing, deleteSingleListing } from "../../api/listingApi";
 
 export default function Show() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const BACKEND_URL = import.meta.env.VITE_API_URL;
   const [listing, setListing] = useState({});
 
   useEffect(() => {
     const fetchListing = async () => {
-      try {
-        const res = await fetch(`${BACKEND_URL}/listings/${id}`);
-        const data = await res.json();
-        setListing(data);
-      } catch (err) {
-        console.error(err);
-      }
+      const data = await fetchSingleListing(id);
+      setListing(data.data);
     };
 
     fetchListing();
@@ -26,11 +21,9 @@ export default function Show() {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${BACKEND_URL}/listings/${id}`, {
-      method: "DELETE",
-    });
+    const res = await deleteSingleListing(id);
 
-    if (res.ok) {
+    if (!res.error) {
       navigate("/listings");
     }
   };

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { fetchSingleListing, updateSingleListing } from "../../api/listingApi";
 
 export default function Edit() {
-  const BACKEND_URL = import.meta.env.VITE_API_URL;
-
   const navigate = useNavigate();
 
   const { id } = useParams();
@@ -19,13 +18,8 @@ export default function Edit() {
 
   useEffect(() => {
     const fetchListings = async () => {
-      try {
-        const res = await fetch(`${BACKEND_URL}/listings/${id}`);
-        const data = await res.json();
-        setFormData(data);
-      } catch (err) {
-        console.error(err);
-      }
+      const data = (await fetchSingleListing(id)).data;
+      setFormData(data);
     };
 
     fetchListings();
@@ -38,15 +32,9 @@ export default function Edit() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`${BACKEND_URL}/listings/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ listing: formData }),
-    });
+    const res = await updateSingleListing(id, formData);
 
-    if (res.ok) {
+    if (!res.error) {
       navigate(`/listings/${id}`);
     }
   };
@@ -93,7 +81,7 @@ export default function Edit() {
               id="image"
               name="image"
               placeholder="Enter image URL/Link"
-              value={formData.image.url}
+              value={formData.image?.url || ""}
               type="text"
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"

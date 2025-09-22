@@ -33,7 +33,7 @@ export default function Footer() {
             </a>
           </div>
           <p className="mt-4 text-gray-500 text-sm">
-            © 2025 Airbnb-FirstCopy Private Limited
+            © 2025 Airbnb Private Limited
           </p>
         </div>
       </div>

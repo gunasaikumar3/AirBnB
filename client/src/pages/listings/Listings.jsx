@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { fetchAllListings } from "../../api/listingApi";
 
 export default function Listings() {
-  const BACKEND_URL = import.meta.env.VITE_API_URL;
-
   const [listings, setListings] = useState([]);
 
   useEffect(() => {
     const fetchListings = async () => {
-      try {
-        const res = await fetch(`${BACKEND_URL}/listings`);
-        const data = await res.json();
-        setListings(data);
-      } catch (err) {
-        console.error(err);
-      }
+      const data = await fetchAllListings();
+      setListings(data.data);
     };
 
     fetchListings();
