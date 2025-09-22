@@ -9,9 +9,10 @@ const mongoose = require("mongoose");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 
-const listing = require("./routes/listing.js");
+const listingRouter = require("./routes/listing.js");
+const userRouter = require("./routes/user.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL = "mongodb://127.0.0.1:27017/AirBnB";
 
 main()
   .then(() => {
@@ -34,7 +35,8 @@ app.get("/", (req, res) => {
   res.send("Hi i am root");
 });
 
-app.use("/listings", listing);
+app.use("/listings", listingRouter);
+app.use("/", userRouter);
 
 app.use((req, res, next) => {
   next(new ExpressError(404, "Page not found"));

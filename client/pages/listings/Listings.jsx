@@ -12,7 +12,6 @@ export default function Listings() {
         const res = await fetch(`${BACKEND_URL}/listings`);
         const data = await res.json();
         setListings(data);
-        console.log(data);
       } catch (err) {
         console.error(err);
       }

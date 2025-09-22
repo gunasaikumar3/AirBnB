@@ -5,6 +5,7 @@ import Show from "../pages/listings/Show";
 import New from "../pages/listings/New";
 import Edit from "../pages/listings/Edit";
 import BoilerPlate from "../pages/layouts/Boilerplate";
+import Signup from "../pages/users/Signup";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/listings/:id" element={<Show />} />
         <Route path="/listings/new" element={<New />} />
         <Route path="/listings/:id/edit" element={<Edit />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BoilerPlate>
   );
