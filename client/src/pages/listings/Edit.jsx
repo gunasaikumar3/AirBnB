@@ -10,7 +10,10 @@ export default function Edit() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    image: "",
+    image: {
+      url: "",
+      filename: "",
+    },
     price: "",
     location: "",
     country: "",
@@ -26,7 +29,15 @@ export default function Edit() {
   }, []);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    e.target.name !== "image"
+      ? setFormData({ ...formData, [e.target.name]: e.target.value })
+      : setFormData({
+          ...formData,
+          image: {
+            ...formData.image,
+            url: e.target.value,
+          },
+        });
   };
 
   const handleSubmit = async (e) => {

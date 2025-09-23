@@ -27,7 +27,7 @@ module.exports.update = async (req, res) => {
 
   await Listing.findByIdAndUpdate(id, { ...req.body.listing });
   res.status(201).json({
-    message: "Listing created successfully",
+    message: "Listing updated successfully",
   });
 };
 

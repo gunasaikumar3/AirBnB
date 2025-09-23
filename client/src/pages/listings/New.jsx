@@ -21,9 +21,8 @@ export default function New() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await createNewListing(formData);
-    console.log(res);
 
-    if (res.ok) {
+    if (!res.error) {
       navigate("/listings");
     }
   };

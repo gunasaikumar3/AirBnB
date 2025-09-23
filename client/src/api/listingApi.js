@@ -14,16 +14,10 @@ export const fetchSingleListing = wrapAsync(async (id) => {
 });
 
 export const updateSingleListing = async (id, formData) => {
-  try {
-    const res = await axios.put(`${API_BASE_URL}/listings/${id}`, {
-      listing: formData,
-    });
-    console.log("Api Result", res); // will run if request succeeds
-    return res.data;
-  } catch (err) {
-    console.error("Axios error:", err.response?.data || err.message);
-    throw err; // rethrow so wrapAsync can handle it
-  }
+  const res = await axios.put(`${API_BASE_URL}/listings/${id}`, {
+    listing: formData,
+  });
+  return res.data;
 };
 
 export const createNewListing = wrapAsync(async (formData) => {
