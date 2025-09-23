@@ -59,7 +59,7 @@ export default function Auth({ onClose }) {
         </div>
 
         <div className="p-6">
-          <h3 className="text-2xl font-bold mb-6">Welcome to WanderLust</h3>
+          <h3 className="text-2xl font-bold mb-6">Welcome to AirBnB</h3>
 
           {/* Login Form */}
           <form onSubmit={handleSubmit}>
