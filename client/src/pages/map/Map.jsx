@@ -1,50 +1,28 @@
-// import React, { useRef, useEffect } from "react";
-// import { createMap } from "maplibre-gl-js-amplify";
-// import "maplibre-gl/dist/maplibre-gl.css";
-// import "maplibre-gl-js-amplify/dist/public/amplify-map.css";
+import React, { useRef, useEffect } from "react";
+import * as maptilersdk from "@maptiler/sdk";
+import "@maptiler/sdk/dist/maptiler-sdk.css";
 
-// const MyMapComponent = () => {
-//   const mapContainerRef = useRef(null);
-//   const mapRef = useRef(null);
+export default function Map({ lng = 78.5462, lat = 17.3354 }) {
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const zoom = 14;
+  maptilersdk.config.apiKey = import.meta.env.VITE_MAP_TILER_KEY;
 
-//   useEffect(() => {
-//     // If a map already exists, don't re-initialize
-//     if (mapRef.current) return;
+  useEffect(() => {
+    if (map.current) return;
 
-//     const initializeMap = async () => {
-//       const map = await createMap({
-//         container: mapContainerRef.current,
-//         center: [-122.483696, 37.833818],
-//         zoom: 12,
-//       });
+    map.current = new maptilersdk.Map({
+      container: mapContainer.current,
+      style: maptilersdk.MapStyle.STREETS,
+      center: [lng, lat],
+      zoom: zoom,
+    });
+  }, [lng, lat, zoom]);
 
-//       mapRef.current = map;
-
-//       // You can add markers or other layers after the map loads
-//       map.on("load", () => {
-//         // Add your drawPoints or other functions here
-//       });
-//     };
-
-//     initializeMap();
-
-//     // Cleanup function
-//     return () => {
-//       if (mapRef.current) {
-//         mapRef.current.remove();
-//       }
-//     };
-//   }, []);
-
-//   return (
-//     <div
-//       ref={mapContainerRef}
-//       style={{
-//         height: "100vh",
-//         width: "100%",
-//       }}
-//     />
-//   );
-// };
-
-// export default MyMapComponent;
+  return (
+    <div
+      ref={mapContainer}
+      className="w-full h-[300px] md:h-[450px] lg:h-[500px] rounded-xl overflow-hidden shadow-lg"
+    />
+  );
+}

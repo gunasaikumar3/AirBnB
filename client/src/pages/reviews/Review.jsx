@@ -10,6 +10,8 @@ import { fetchListingReviews, submitListingReview } from "../../api/reviewApi";
 
 import { getMemberSinceText } from "../../utils/getMemberSinceText";
 
+import ProtectedRoute from "../../ProtectedRoute.jsx";
+
 export default function Reviews({ listingId }) {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +25,7 @@ export default function Reviews({ listingId }) {
     setIsLoading(true);
     try {
       const res = await fetchListingReviews(listingId);
+      console.log(res.data.listing.reviews);
       if (res && res.data && res.data.listing && res.data.listing.reviews) {
         setReviews(res.data.listing.reviews);
       }
@@ -145,7 +148,7 @@ export default function Reviews({ listingId }) {
       </div>
 
       {/* Footer Buttons */}
-      <div className="mt-12 flex flex-col sm:flex-row gap-4">
+      <div className="mt-12 flex flex-col sm:flex-row gap-4 m-6">
         {reviews.length > 6 && visibleReviewsCount < reviews.length && (
           <button
             onClick={handleShowAllReviews}
@@ -165,6 +168,7 @@ export default function Reviews({ listingId }) {
 
       {showReviewForm && (
         <div className="mt-12">
+          <ProtectedRoute></ProtectedRoute>
           <ReviewForm
             onCancel={() => setShowReviewForm(false)}
             onSubmit={handleNewReviewSubmit}

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Reviews from "../reviews/Review";
 import { fetchSingleListing, deleteSingleListing } from "../../api/listingApi";
-// import MyMapComponent from "../map/Map";
+import Map from "../map/Map";
 
 export default function Show() {
   const { id } = useParams();
@@ -134,7 +134,12 @@ export default function Show() {
 
       {/* Reviews Section */}
       <Reviews listingId={id} />
-      {/* <MyMapComponent /> */}
+
+      {/* Where you'll be Section */}
+      <div className="my-8 border-b pb-8">
+        <h2 className="text-2xl font-semibold mb-4">Where you'll be</h2>
+        <Map />
+      </div>
     </div>
   );
 }

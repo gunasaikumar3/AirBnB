@@ -11,6 +11,8 @@ export const getUserId = (accessToken) => {
 };
 
 export const fetchUserDetailsApi = wrapAsync(async (accessToken) => {
+  // console.log(accessToken);
+  // console.log(getUserId(accessToken));
   const res = await axios.get(`${API_BASE_URL}/user/${getUserId(accessToken)}`);
   return res.data;
 });
