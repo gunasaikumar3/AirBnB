@@ -18,19 +18,23 @@ const validateListing = (req, res, next) => {
   }
 };
 
-// Index Route
-router.get("/", listingController.index);
+router
+  .route("/")
+  // Index Route
+  .get(listingController.index)
 
-//Show Route
-router.get("/:id", wrapAsync(listingController.show));
+  //Create Route
+  .post(validateListing, wrapAsync(listingController.create));
 
-//Create Route
-router.post("/", validateListing, wrapAsync(listingController.create));
+router
+  .route("/:id")
+  //Show Route
+  .get(wrapAsync(listingController.show))
 
-//Update Route
-router.put("/:id", validateListing, wrapAsync(listingController.update));
+  //Update Route
+  .put(validateListing, wrapAsync(listingController.update))
 
-//Delete Route
-router.delete("/:id", wrapAsync(listingController.delete));
+  //Delete Route
+  .delete(wrapAsync(listingController.delete));
 
 module.exports = router;

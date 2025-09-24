@@ -1,8 +1,9 @@
 // Show.jsx
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import Reviews from "./Review";
+import Reviews from "../reviews/Review";
 import { fetchSingleListing, deleteSingleListing } from "../../api/listingApi";
+// import MyMapComponent from "../map/Map";
 
 export default function Show() {
   const { id } = useParams();
@@ -132,7 +133,8 @@ export default function Show() {
       </div>
 
       {/* Reviews Section */}
-      <Reviews />
+      <Reviews listingId={id} />
+      {/* <MyMapComponent /> */}
     </div>
   );
 }

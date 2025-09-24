@@ -31,12 +31,18 @@ export default function Auth({ onClose }) {
     try {
       // Dispatch Redux login thunk
       const accessToken = await dispatch(login(formData)).unwrap();
-      console.log(accessToken);
       if (accessToken) {
         alert("Welcome! You are logged in.");
         navigate("/listings");
         onClose();
       }
+
+      // const access = accessToken;
+      // const [header, payload, signature] = access.split(".");
+      // const decodedPayload = JSON.parse(atob(payload));
+      // const userId = decodedPayload.sub;
+
+      // console.log(userId); // This will print the user._id
     } catch (err) {
       console.error(err);
       alert(err?.message || "Login failed. Try again!");

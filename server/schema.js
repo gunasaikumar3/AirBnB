@@ -11,6 +11,7 @@ module.exports.listingSchema = Joi.object({
       filename: Joi.string().allow(""),
       url: Joi.string().allow("", null),
     }),
+    reviews: Joi.array().optional(),
     _id: Joi.string().optional(),
     __v: Joi.number().optional(),
   }).required(),

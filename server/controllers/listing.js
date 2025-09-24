@@ -23,8 +23,6 @@ module.exports.create = async (req, res) => {
 module.exports.update = async (req, res) => {
   const { id } = req.params;
 
-  console.log(id);
-
   await Listing.findByIdAndUpdate(id, { ...req.body.listing });
   res.status(201).json({
     message: "Listing updated successfully",

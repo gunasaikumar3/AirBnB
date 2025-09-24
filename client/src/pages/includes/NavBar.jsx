@@ -29,8 +29,6 @@ export default function Navbar() {
   };
 
   const openAuthModal = () => {
-    console.log("Inside ", access);
-
     setIsSigninOpen(true);
     setIsMenuOpen(false);
   };

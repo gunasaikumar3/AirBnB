@@ -16,8 +16,10 @@ const cryptoHash = (rid) =>
 
 module.exports.register = async (req, res) => {
   const { email, password } = req.body;
+  const registerDate = new Date();
+
   const passwordHash = await hashPassword(password);
-  const user = new User({ email, passwordHash });
+  const user = new User({ email, registerDate, passwordHash });
   await user.save();
   res.status(201).json({ ok: true });
 };
@@ -25,7 +27,7 @@ module.exports.register = async (req, res) => {
 module.exports.login = async (req, res) => {
   const { email, password, deviceInfo } = req.body;
   const user = await User.findOne({ email });
-  if (!user) return res.status(401).json({ error: "Invalid credentials" });
+  if (!user) return res.status(404).json({ error: "Invalid credentials" });
 
   const ok = await verifyPassword(user.passwordHash, password);
   if (!ok) return res.status(401).json({ error: "Wrong password" });

@@ -13,6 +13,8 @@ const ExpressError = require("./utils/ExpressError.js");
 
 const listingRouter = require("./routes/listing.js");
 const authRouter = require("./routes/auth.js");
+const userRouter = require("./routes/user.js");
+const reviewRouter = require("./routes/review.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/AirBnB";
 
@@ -45,6 +47,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/listings", listingRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
+app.use("/api/listings/:id/reviews", reviewRouter);
 
 app.use((req, res, next) => {
   next(new ExpressError(404, "Page not found"));

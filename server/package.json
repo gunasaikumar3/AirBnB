@@ -21,6 +21,8 @@
     "helmet": "^8.1.0",
     "joi": "^18.0.1",
     "jsonwebtoken": "^9.0.2",
+    "maplibre-gl": "^2.4.0",
+    "maplibre-gl-js-amplify": "^4.0.2",
     "method-override": "^3.0.0",
     "mongoose": "^8.18.1"
   }

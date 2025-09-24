@@ -15,6 +15,10 @@ const userSchema = Schema({
     unique: true,
     required: true,
   },
+  registerDate: {
+    type: Date,
+    required: true,
+  },
   passwordHash: { type: String, required: true },
   role: { type: String, default: "user" },
   sessions: [SessionSchema],
