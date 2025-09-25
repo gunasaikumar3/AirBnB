@@ -29,6 +29,10 @@ export default function Show() {
     }
   };
 
+  if (!listing) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="container mx-auto p-4 md:p-8 max-w-7xl">
       {/* Title */}
@@ -44,7 +48,7 @@ export default function Show() {
       {/* Image Gallery Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 rounded-xl overflow-hidden mb-8">
         {/* Main Large Image (takes 2 columns and 2 rows on larger screens) */}
-        <div className="md:col-span-2 md:row-span-2 h-[300px] md:h-[450px] lg:h-[500px]">
+        <div className="md:col-span-2 md:row-span-2 h-[300px] md:h-[450px] lg:h-[510px]">
           <img
             src={listing.image?.url}
             alt={listing.title}
@@ -138,7 +142,12 @@ export default function Show() {
       {/* Where you'll be Section */}
       <div className="my-8 border-b pb-8">
         <h2 className="text-2xl font-semibold mb-4">Where you'll be</h2>
-        <Map />
+        {listing && (
+          <Map
+            lat={listing?.geometry?.coordinates[1]}
+            lng={listing?.geometry?.coordinates[0]}
+          />
+        )}
       </div>
     </div>
   );

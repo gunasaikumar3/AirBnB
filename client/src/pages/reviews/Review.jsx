@@ -25,7 +25,7 @@ export default function Reviews({ listingId }) {
     setIsLoading(true);
     try {
       const res = await fetchListingReviews(listingId);
-      console.log(res.data.listing.reviews);
+
       if (res && res.data && res.data.listing && res.data.listing.reviews) {
         setReviews(res.data.listing.reviews);
       }

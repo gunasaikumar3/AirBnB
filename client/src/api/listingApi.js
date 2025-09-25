@@ -1,5 +1,6 @@
 import axios from "axios";
 import { wrapAsync } from "../utils/wrapAsync";
+import { getCoordinatesFromAddress } from "../services/geocodingService";
 
 const API_BASE_URL = "http://localhost:8080/api";
 
@@ -14,16 +15,27 @@ export const fetchSingleListing = wrapAsync(async (id) => {
 });
 
 export const updateSingleListing = async (id, formData) => {
+  const geometry = await getCoordinatesFromAddress(
+    formData.location + " " + formData.country
+  );
+
   const res = await axios.put(`${API_BASE_URL}/listings/${id}`, {
-    listing: formData,
+    listing: { ...formData, geometry },
   });
+
   return res.data;
 };
 
 export const createNewListing = wrapAsync(async (formData) => {
+  const geometry = await getCoordinatesFromAddress(
+    formData.location + " " + formData.country
+  );
+
   const res = await axios.post(`${API_BASE_URL}/listings`, {
-    listing: formData,
+    listing: { ...formData, geometry },
   });
+
+  console.log(res.data);
   return res.data;
 });
 

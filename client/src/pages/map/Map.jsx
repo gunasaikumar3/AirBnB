@@ -2,7 +2,11 @@ import React, { useRef, useEffect } from "react";
 import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 
-export default function Map({ lng = 78.5462, lat = 17.3354 }) {
+export default function Map({ lng, lat }) {
+  if (!lng || !lat) {
+    return <div>Loading...</div>;
+  }
+
   const mapContainer = useRef(null);
   const map = useRef(null);
   const zoom = 14;
@@ -17,6 +21,10 @@ export default function Map({ lng = 78.5462, lat = 17.3354 }) {
       center: [lng, lat],
       zoom: zoom,
     });
+
+    new maptilersdk.Marker({ color: "#FF0000" })
+      .setLngLat([lng, lat])
+      .addTo(map.current);
   }, [lng, lat, zoom]);
 
   return (

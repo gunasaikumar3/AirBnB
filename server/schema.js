@@ -14,5 +14,9 @@ module.exports.listingSchema = Joi.object({
     reviews: Joi.array().optional(),
     _id: Joi.string().optional(),
     __v: Joi.number().optional(),
-  }).required(),
+    geometry: Joi.object({
+      type: Joi.string().valid("Point").optional(),
+      coordinates: Joi.array().items(Joi.number()).min(2).max(2).optional(),
+    }).optional(),
+  }).optional(),
 });

@@ -1,3 +1,4 @@
+const { required } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -34,6 +35,16 @@ const listingSchema = new Schema({
       ref: "Review",
     },
   ],
+
+  geometry: {
+    type: {
+      type: String,
+      enum: ["Point"],
+    },
+    coordinates: {
+      type: [Number],
+    },
+  },
 });
 
 const Listing = mongoose.model("Listing", listingSchema);
