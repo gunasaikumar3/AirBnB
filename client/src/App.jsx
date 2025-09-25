@@ -11,6 +11,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import { useDispatch } from "react-redux";
 import { refresh } from "./store/authSlice.js";
+import PageNotFound from "./error/PageNotFound.jsx";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -35,28 +36,45 @@ export default function App() {
   }
 
   return (
-    <BoilerPlate>
-      <Routes>
-        <Route path="/" element={<Navigate to="/listings" />} />
-        <Route path="/listings" element={<Listings />} />
-        <Route path="/listings/:id" element={<Show />} />
-        <Route
-          path="/listings/new"
-          element={
-            <ProtectedRoute>
+    <Routes>
+      <Route path="/" element={<Navigate to="/listings" />} />
+      <Route
+        path="/listings"
+        element={
+          <BoilerPlate>
+            <Listings />
+          </BoilerPlate>
+        }
+      />
+      <Route
+        path="/listings/:id"
+        element={
+          <BoilerPlate>
+            <Show />
+          </BoilerPlate>
+        }
+      />
+      <Route
+        path="/listings/new"
+        element={
+          <ProtectedRoute>
+            <BoilerPlate>
               <New />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/listings/:id/edit"
-          element={
-            <ProtectedRoute>
+            </BoilerPlate>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/listings/:id/edit"
+        element={
+          <ProtectedRoute>
+            <BoilerPlate>
               <Edit />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-    </BoilerPlate>
+            </BoilerPlate>
+          </ProtectedRoute>
+        }
+      />
+      <Route path="*" element={<PageNotFound />} />
+    </Routes>
   );
 }
