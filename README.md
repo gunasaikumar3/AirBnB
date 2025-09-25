@@ -100,36 +100,28 @@ Create a .env file in the server directory and client directory add your environ
 
 Code snippet
 in client directory
-
-        `bash
-        VITE_MAP_TILER_KEY=your_api_key
-        `
+        
+    VITE_MAP_TILER_KEY=your_api_key        
 
 in server directory
 
-        `bash
-        ACCESS_TOKEN_SECRET=helloworld
-        REFRESH_TOKEN_SECRET = helloworld
-        ACCESS_TOKEN_EXP = 10m
-        REFRESH_TOKEN_EXP = 30d
-        NODE_ENV=development
-        `
+    ACCESS_TOKEN_SECRET=helloworld
+    REFRESH_TOKEN_SECRET = helloworld
+    ACCESS_TOKEN_EXP = 10m
+    REFRESH_TOKEN_EXP = 30d
+    NODE_ENV=development
 
 Usage
 Running the Backend
 
 In the server directory, start the server with nodemon for development:
 
-    ```bash
     nodemon server.js
-    ```
 
 Running the Frontend
 
 In the client directory, start the React application:
 
-    ```bash
     npm run dev
-    ```
 
 The application will be accessible at http://localhost:5173.
