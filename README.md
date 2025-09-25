@@ -73,63 +73,63 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### **Installation**
 
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/gunasaikumar3/AirBnB.git
-   cd AirBnB
-   ```
-
-2. **Install backend dependencies:**
-
-   ```bash
-   cd server
-   npm install
-   ```
-
-3. **Install frontend dependencies:**
-
-   ```bash
-   cd ../client
-   npm install
-   ```
-
-4. **Set up environment variables:**
-
-Create a .env file in the server directory and client directory add your environment variables, including:
-
-Code snippet
-in client directory
+1.  **Clone the repository:**
 
     ```bash
-    VITE_MAP_TILER_KEY=your_api_key
+    git clone https://github.com/gunasaikumar3/AirBnB.git
+    cd AirBnB
     ```
 
-in server directory
+2.  **Install backend dependencies:**
 
     ```bash
-    ACCESS_TOKEN_SECRET=helloworld
-    REFRESH_TOKEN_SECRET = helloworld
-    ACCESS_TOKEN_EXP = 10m
-    REFRESH_TOKEN_EXP = 30d
-    NODE_ENV=development
+    cd server
+    npm install
     ```
 
-Usage
-Running the Backend
-
-In the server directory, start the server with nodemon for development:
+3.  **Install frontend dependencies:**
 
     ```bash
-    nodemon server.js
+    cd ../client
+    npm install
     ```
 
-Running the Frontend
+    4. **Set up environment variables:**
 
-In the client directory, start the React application:
+    Create a .env file in the server directory and client directory add your environment variables, including:
 
-```bash
-npm run dev
-```
+    Code snippet
+    in client directory
 
-The application will be accessible at http://localhost:5173.
+         `bash
+         VITE_MAP_TILER_KEY=your_api_key
+         `
+
+    in server directory
+
+         `bash
+         ACCESS_TOKEN_SECRET=helloworld
+         REFRESH_TOKEN_SECRET = helloworld
+         ACCESS_TOKEN_EXP = 10m
+         REFRESH_TOKEN_EXP = 30d
+         NODE_ENV=development
+         `
+
+    Usage
+    Running the Backend
+
+    In the server directory, start the server with nodemon for development:
+
+         ```bash
+         nodemon server.js
+         ```
+
+    Running the Frontend
+
+    In the client directory, start the React application:
+
+    ```bash
+    npm run dev
+    ```
+
+    The application will be accessible at http://localhost:5173.
