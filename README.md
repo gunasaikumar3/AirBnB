@@ -1,4 +1,4 @@
-# **Project Name : ** AirBnB
+# Project Name : AirBnB
 
 ## **Description**
 
@@ -82,42 +82,47 @@ These instructions will get you a copy of the project up and running on your loc
 
 2. **Install backend dependencies:**
 
-```bash
-cd server
-npm install
-```
+   ```bash
+   cd server
+   npm install
+   ```
 
 3. **Install frontend dependencies:**
 
-```bash
-cd ../client
-npm install
-```
+   ```bash
+   cd ../client
+   npm install
+   ```
 
-Set up environment variables:
+4 .**Set up environment variables:**
 
-Create a .env file in the server directory and add your environment variables, including:
-
-Code snippet
-
-PORT=3000
-MONGODB_URI=your_mongodb_connection_string
-
-# Add other variables like Cloudinary credentials if used
-
-Create a .env file in the client directory and add your MapTiler API key with the VITE\_ prefix:
+Create a .env file in the server directory and client directory add your environment variables, including:
 
 Code snippet
+in client directory
 
-VITE_MAP_TILER_KEY=your_maptiler_api_key
+    ```bash
+    VITE_MAP_TILER_KEY=your_api_key
+    ```
+
+in server directory
+
+    ```bash
+    ACCESS_TOKEN_SECRET=helloworld
+    REFRESH_TOKEN_SECRET = helloworld
+    ACCESS_TOKEN_EXP = 10m
+    REFRESH_TOKEN_EXP = 30d
+    NODE_ENV=development
+    ```
+
 Usage
 Running the Backend
 
 In the server directory, start the server with nodemon for development:
 
-```bash
-nodemon server.js
-```
+    ```bash
+    nodemon server.js
+    ```
 
 Running the Frontend
 
