@@ -94,7 +94,7 @@ These instructions will get you a copy of the project up and running on your loc
    npm install
    ```
 
-4 .**Set up environment variables:**
+4. **Set up environment variables:**
 
 Create a .env file in the server directory and client directory add your environment variables, including:
 
