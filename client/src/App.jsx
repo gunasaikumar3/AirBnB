@@ -58,9 +58,7 @@ export default function App() {
         path="/listings/new"
         element={
           <ProtectedRoute>
-            <BoilerPlate>
-              <New />
-            </BoilerPlate>
+            <New />
           </ProtectedRoute>
         }
       />
@@ -68,9 +66,7 @@ export default function App() {
         path="/listings/:id/edit"
         element={
           <ProtectedRoute>
-            <BoilerPlate>
-              <Edit />
-            </BoilerPlate>
+            <Edit />
           </ProtectedRoute>
         }
       />
