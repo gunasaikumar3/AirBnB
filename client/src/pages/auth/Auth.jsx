@@ -112,13 +112,13 @@ export default function Auth({ onClose }) {
           </form>
 
           {/* Social / alternative login */}
-          <div className="flex items-center my-6">
+          {/* <div className="flex items-center my-6">
             <hr className="flex-grow border-t" />
             <span className="px-4 text-gray-500 font-semibold text-sm">or</span>
             <hr className="flex-grow border-t" />
-          </div>
+          </div> */}
 
-          <div className="flex flex-col gap-4">
+          {/* <div className="flex flex-col gap-4">
             <button className="flex items-center justify-start gap-4 w-full p-4 border rounded-lg hover:border-black transition-colors duration-200">
               <FontAwesomeIcon icon={faGoogle} className="w-5 h-5" />
               <span className="flex-grow text-center font-medium">
@@ -146,7 +146,7 @@ export default function Auth({ onClose }) {
                 Continue with Facebook
               </span>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

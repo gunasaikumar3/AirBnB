@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const SessionSchema = Schema({
   deviceInfo: String,
   refreshTokenHash: String,
-  createdAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now() },
   expiresAt: Date,
   lastUsedAt: Date,
 });
