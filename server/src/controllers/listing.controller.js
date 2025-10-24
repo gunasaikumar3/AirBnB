@@ -1,17 +1,17 @@
-const Listing = require("../models/listing.js");
+import Listing from "../models/listing.model.js";
 
-module.exports.index = async (req, res) => {
+const index = async (req, res) => {
   const allListings = await Listing.find({});
   res.send(allListings);
 };
 
-module.exports.show = async (req, res) => {
+const show = async (req, res) => {
   const { id } = req.params;
   const listing = await Listing.findById(id);
   res.send(listing);
 };
 
-module.exports.create = async (req, res) => {
+const create = async (req, res) => {
   let newListing = new Listing(req.body.listing);
   await newListing.save();
 
@@ -20,7 +20,7 @@ module.exports.create = async (req, res) => {
   });
 };
 
-module.exports.update = async (req, res) => {
+const update = async (req, res) => {
   const { id } = req.params;
 
   await Listing.findByIdAndUpdate(id, { ...req.body.listing });
@@ -29,7 +29,7 @@ module.exports.update = async (req, res) => {
   });
 };
 
-module.exports.delete = async (req, res) => {
+const destroy = async (req, res) => {
   const { id } = req.params;
 
   await Listing.findByIdAndDelete(id);
@@ -37,3 +37,5 @@ module.exports.delete = async (req, res) => {
     message: "Listing deleted successfully",
   });
 };
+
+export { index, show, create, update, destroy };

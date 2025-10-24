@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-const crypto = require("crypto");
+import jwt from "jsonwebtoken";
+import crypto from "crypto";
 
 const ACCESS_SECRET = process.env.ACCESS_TOKEN_SECRET;
 const REFRESH_SECRET = process.env.REFRESH_TOKEN_SECRET;
@@ -23,10 +23,4 @@ function genRefreshId() {
   return crypto.randomBytes(32).toString("hex"); // rid
 }
 
-module.exports = {
-  signAccess,
-  signRefresh,
-  verifyAccess,
-  verifyRefresh,
-  genRefreshId,
-};
+export { signAccess, signRefresh, verifyAccess, verifyRefresh, genRefreshId };

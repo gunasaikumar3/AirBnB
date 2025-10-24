@@ -1,7 +1,7 @@
-const Review = require("../models/review.js");
-const Listing = require("../models/listing.js");
+import Review from "../models/review.model.js";
+import Listing from "../models/listing.model.js";
 
-module.exports.listingReviews = async (req, res) => {
+export const listingReviews = async (req, res) => {
   const listing = await Listing.findById(req.params.id)
     .populate({
       path: "reviews",
@@ -16,7 +16,7 @@ module.exports.listingReviews = async (req, res) => {
 
   res.json({ listing });
 };
-module.exports.createReview = async (req, res) => {
+export const createReview = async (req, res) => {
   const { id, userId } = req.params;
 
   const listing = await Listing.findById(id);

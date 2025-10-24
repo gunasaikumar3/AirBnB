@@ -1,20 +1,20 @@
-const User = require("../models/user.js");
-const {
+import User from "../models/user.model.js";
+import {
   signAccess,
   signRefresh,
   verifyRefresh,
   genRefreshId,
-} = require("../utils/token.js");
-const { hashPassword, verifyPassword } = require("../utils/password");
+} from "../utils/token.js";
+import { hashPassword, verifyPassword } from "../utils/password.js";
 
-const crypto = require("crypto");
+import crypto from "crypto";
 
 const COOKIE_NAME = "jid";
 
 const cryptoHash = (rid) =>
   crypto.createHash("sha256").update(rid).digest("hex");
 
-module.exports.register = async (req, res) => {
+const register = async (req, res) => {
   const { email, password } = req.body;
   const registerDate = new Date();
 
@@ -24,7 +24,7 @@ module.exports.register = async (req, res) => {
   res.status(201).json({ ok: true });
 };
 
-module.exports.login = async (req, res) => {
+const login = async (req, res) => {
   const { email, password, deviceInfo } = req.body;
   const user = await User.findOne({ email });
   if (!user) return res.status(404).json({ error: "Invalid credentials" });
@@ -50,7 +50,6 @@ module.exports.login = async (req, res) => {
   });
   await user.save();
 
-  // send refresh as httpOnly cookie; path should be /auth/refresh to limit exposure
   res.cookie(COOKIE_NAME, refresh, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
@@ -62,7 +61,7 @@ module.exports.login = async (req, res) => {
   res.json({ access });
 };
 
-module.exports.refresh = async (req, res) => {
+const refresh = async (req, res) => {
   const token = req.cookies[COOKIE_NAME];
   if (!token) return res.status(401).json({ ok: false });
 
@@ -116,7 +115,7 @@ module.exports.refresh = async (req, res) => {
   res.json({ access: newAccess });
 };
 
-module.exports.logout = async (req, res) => {
+const logout = async (req, res) => {
   const token = req.cookies[COOKIE_NAME];
   if (token) {
     try {
@@ -137,3 +136,5 @@ module.exports.logout = async (req, res) => {
   res.clearCookie(COOKIE_NAME, { path: "/" });
   res.json({ ok: true });
 };
+
+export { register, login, refresh, logout };

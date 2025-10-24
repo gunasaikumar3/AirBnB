@@ -1,21 +1,22 @@
-const express = require("express");
+import express from "express";
+
+import cors from "cors";
+import methodOverride from "method-override";
+import cookieParser from "cookie-parser";
+
+import dotenv from "dotenv";
+dotenv.config();
+
+import mongoose from "mongoose";
+
+import ExpressError from "./utils/ExpressError.js";
+
+import listingRouter from "./routes/listing.routes.js";
+import authRouter from "./routes/auth.routes.js";
+import userRouter from "./routes/user.routes.js";
+import reviewRouter from "./routes/review.routes.js";
+
 const app = express();
-
-const cors = require("cors");
-const methodOverride = require("method-override");
-const cookieParser = require("cookie-parser");
-
-require("dotenv").config();
-
-const mongoose = require("mongoose");
-
-const ExpressError = require("./utils/ExpressError.js");
-
-const listingRouter = require("./routes/listing.js");
-const authRouter = require("./routes/auth.js");
-const userRouter = require("./routes/user.js");
-const reviewRouter = require("./routes/review.js");
-
 const MONGO_URL = "mongodb://127.0.0.1:27017/AirBnB";
 
 main()
@@ -31,8 +32,8 @@ async function main() {
 }
 
 const corsOptions = {
-  origin: "http://localhost:5173", // frontend URL
-  credentials: true, // allow cookies
+  origin: "http://localhost:5173",
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
