@@ -116,7 +116,7 @@ Running the Backend
 
 In the server directory, start the server with nodemon for development:
 
-    nodemon server.js
+    nodemon app.js
 
 Running the Frontend
 
