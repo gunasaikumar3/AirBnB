@@ -40,7 +40,6 @@ The application includes:
 - **Node.js & Express.js**: For the server and API.
 - **MongoDB**: The NoSQL database for storing listings, users, and reviews.
 - **Mongoose**: An ODM (Object Data Modeling) library for MongoDB.
-- **Passport.js**: For authentication.
 
 ---
 
@@ -65,7 +64,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### **Prerequisites**
 
 - **Node.js**
-- **MongoDB** (local)
+- **MongoDB**
 - **NPM**
 - **MapTiler API Key**
 
@@ -100,8 +99,8 @@ Create a .env file in the server directory and client directory add your environ
 
 Code snippet
 in client directory
-        
-    VITE_MAP_TILER_KEY=your_api_key        
+
+    VITE_MAP_TILER_KEY=your_api_key
 
 in server directory
 
@@ -116,7 +115,7 @@ Running the Backend
 
 In the server directory, start the server with nodemon for development:
 
-    nodemon app.js
+    nodemon src/app.js
 
 Running the Frontend
 

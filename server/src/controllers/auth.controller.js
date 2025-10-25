@@ -41,7 +41,7 @@ const login = async (req, res) => {
 
   // store hashed rid in a session
   const hashed = cryptoHash(rid);
-  const expiresAt = new Date(Date.now() + 30 * 24 * 3600 * 1000); // match REFRESH_EXP
+  const expiresAt = new Date(Date.now() + 30 * 24 * 3600 * 1000);
   user.sessions.push({
     deviceInfo: deviceInfo || req.get("User-Agent"),
     refreshTokenHash: hashed,
@@ -53,7 +53,7 @@ const login = async (req, res) => {
   res.cookie(COOKIE_NAME, refresh, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
+    sameSite: "none",
     path: "/",
     maxAge: 30 * 24 * 3600 * 1000,
   });
@@ -107,7 +107,7 @@ const refresh = async (req, res) => {
   res.cookie(COOKIE_NAME, newRefresh, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
+    sameSite: "none",
     path: "/",
     maxAge: 30 * 24 * 3600 * 1000,
   });
