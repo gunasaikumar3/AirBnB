@@ -1,13 +1,10 @@
+import "./config/config.js";
+
 import express from "express";
 
 import cors from "cors";
 import methodOverride from "method-override";
 import cookieParser from "cookie-parser";
-
-import * as dotenv from "dotenv";
-dotenv.config({
-  path: "../.env",
-});
 
 import mongoose from "mongoose";
 
