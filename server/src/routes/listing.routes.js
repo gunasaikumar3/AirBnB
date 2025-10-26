@@ -4,7 +4,7 @@ const router = express.Router();
 import { wrapAsync } from "../utils/wrapAsync.js";
 import ExpressError from "../utils/ExpressError.js";
 
-import { listingSchema } from "../validation/schema.js";
+import { listingSchemaValidator } from "../validations/listing.validation.js";
 import {
   index,
   create,
@@ -14,7 +14,7 @@ import {
 } from "../controllers/listing.controller.js";
 
 const validateListing = (req, res, next) => {
-  const { error } = listingSchema.validate(req.body);
+  const { error } = listingSchemaValidator.validate(req.body);
 
   if (error) {
     let errorMessage = error.details.map((el) => el.message).join("");

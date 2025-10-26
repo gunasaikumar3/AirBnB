@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-export const listingSchema = Joi.object({
+export const listingSchemaValidator = Joi.object({
   listing: Joi.object({
     title: Joi.string().required(),
     description: Joi.string().required(),
