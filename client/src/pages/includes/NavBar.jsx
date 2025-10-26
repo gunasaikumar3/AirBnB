@@ -8,9 +8,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import Auth from "../auth/Auth.jsx";
 import { logout } from "../../store/authSlice.js";
 import SearchBar from "./SearchBar/SearchBar.jsx";
+import { useEffect } from "react";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -19,6 +22,9 @@ export default function Navbar() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [authModal, setAuthModal] = useState(null);
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
@@ -37,6 +43,15 @@ export default function Navbar() {
   const closeModal = () => {
     setAuthModal(null);
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+
+    if (params.get("auth") == "open" && !isLoggedIn) {
+      openAuthModal("signin");
+      navigate(location.pathname, { replace: true });
+    }
+  }, [location.search, location.pathname, isLoggedIn, navigate]);
 
   return (
     <>

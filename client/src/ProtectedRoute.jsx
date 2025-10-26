@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 export default function ProtectedRoute({ children }) {
   const isLoggedIn = useSelector((state) => !!state.auth.access);
 
-  if (!isLoggedIn) return <Navigate to="/" replace />;
+  if (!isLoggedIn) return <Navigate to="/listings?auth=open" replace />;
 
   return children;
 }
