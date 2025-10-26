@@ -53,7 +53,7 @@ const login = async (req, res) => {
   res.cookie(COOKIE_NAME, refresh, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     path: "/",
     maxAge: 30 * 24 * 3600 * 1000,
   });
@@ -107,7 +107,7 @@ const refresh = async (req, res) => {
   res.cookie(COOKIE_NAME, newRefresh, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     path: "/",
     maxAge: 30 * 24 * 3600 * 1000,
   });
