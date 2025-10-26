@@ -1,4 +1,4 @@
-export default function InternalServerError() {
+export default function InternalServerError({ errorCode = 500, message = "" }) {
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
       <div className="flex w-full max-w-7xl mx-auto p-8 sm:p-12 md:p-16 flex-col md:flex-row items-center md:items-start justify-center">
@@ -27,7 +27,16 @@ export default function InternalServerError() {
           <p className="mt-4 text-xl text-gray-600">
             Something went wrong on our end. We're working to fix it.
           </p>
-          <p className="mt-2 text-sm text-gray-400">Error code: 500</p>
+
+          {
+            <>
+              <p>{message}</p>
+
+              <p className="mt-2 text-sm text-gray-400">
+                Error code: {errorCode}
+              </p>
+            </>
+          }
 
           <div className="mt-8">
             <h3 className="font-semibold text-gray-800 mb-2">

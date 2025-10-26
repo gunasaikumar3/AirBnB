@@ -5,8 +5,11 @@ import StarRating from "../star/StarRating";
 import ReviewForm from "./ReviewForm";
 
 import { useSelector } from "react-redux";
-import { getUserId } from "../../api/userApi";
-import { fetchListingReviews, submitListingReview } from "../../api/reviewApi";
+import { getUserId } from "../../api/user.api.js";
+import {
+  fetchListingReviews,
+  submitListingReview,
+} from "../../api/review.api.js";
 
 import { getMemberSinceText } from "../../utils/getMemberSinceText";
 

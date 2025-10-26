@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchSingleListing, updateSingleListing } from "../../api/listingApi";
+import {
+  fetchSingleListing,
+  updateSingleListing,
+} from "../../api/listing.api.js";
 
 export default function Edit() {
   const navigate = useNavigate();

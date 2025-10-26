@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchAllListings } from "../../api/listingApi";
+import { fetchAllListings } from "../../api/listing.api.js";
 
 export default function Listings() {
   const [listings, setListings] = useState([]);
